@@ -1,0 +1,33 @@
+[
+  {
+    "type": "reading",
+    "id": "lussen-intro",
+    "title": "De for-lus",
+    "description": "Met een `for`-lus herhaal je code voor elk element van een lijst:\n\n```python\nfor dier in ['kat', 'hond']:\n    print(dier)\n```\n\n> [!TIP]\n> `range(n)` geeft de getallen `0` tot en met `n - 1`."
+  },
+  {
+    "type": "function",
+    "id": "tel-elementen",
+    "title": "Tellen met een lus",
+    "descriptionFile": "tellen/description.md",
+    "starterFile": "tellen/starter.py",
+    "solutionFile": "tellen/solution.py",
+    "tests": [
+      { "name": "drie elementen", "code": "assert count_elements([1, 2, 3]) == 3" },
+      { "name": "lege lijst", "code": "assert count_elements([]) == 0" },
+      { "name": "één element", "code": "assert count_elements(['a']) == 1, 'één element moet 1 geven'" }
+    ]
+  },
+  {
+    "type": "io",
+    "id": "dobbelsteen",
+    "title": "Dobbelsteen",
+    "description": "Lees een aantal worpen `n` en druk de som van `n` worpen met een dobbelsteen af (`random.randint(1, 6)`).",
+    "starterCode": "import random\n\nn = int(input(\"Aantal worpen? \"))\n",
+    "solution": "import random\n\nn = int(input(\"Aantal worpen? \"))\ntotaal = 0\nfor _ in range(n):\n    totaal += random.randint(1, 6)\nprint(totaal)\n",
+    "tests": [
+      { "name": "3 worpen", "setup": "import random; random.seed(1)", "stdin": "3\n", "expectedStdout": "8\n" },
+      { "name": "0 worpen", "stdin": "0\n", "expectedStdout": "0\n" }
+    ]
+  }
+]

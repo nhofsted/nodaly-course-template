@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "id": "python-basis",
+  "title": "Python basis (voorbeeld)",
+  "language": "nl",
+  "lessons": [
+    { "id": "lussen", "title": "Lussen" }
+  ]
+}
