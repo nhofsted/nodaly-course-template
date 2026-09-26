@@ -24,3 +24,9 @@ Nodaly, onder *Handleiding → Het cursusformaat*.
 
 > Voorbeeldoplossingen (`solution`/`solutionFile`) krijgen leerlingen in Nodaly nooit te zien, maar in een **openbare**
 > repository zijn ze voor iedereen leesbaar.
+
+## Licentie
+
+Dit sjabloon staat onder [CC0 1.0](LICENSE) (publiek domein): je mag het zonder voorwaarden kopiëren, aanpassen en
+gebruiken, ook zonder bronvermelding. Voor je eigen cursus kies je zelf een licentie: vervang dan `LICENSE` en het veld
+`license` in `course.json` (bv. `CC BY-SA 4.0`).

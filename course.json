@@ -3,7 +3,11 @@
   "id": "python-basis",
   "title": "Python basis (voorbeeld)",
   "language": "nl",
+  "license": "CC0 1.0",
   "lessons": [
-    { "id": "lussen", "title": "Lussen" }
+    {
+      "id": "lussen",
+      "title": "Lussen"
+    }
   ]
 }
