@@ -1,0 +1,69 @@
+[
+  {
+    "type": "reading",
+    "id": "lijsten-uitleg",
+    "title": "Lijsten en hun gemiddelde",
+    "descriptionFile": "gemiddelde/uitleg.md"
+  },
+  {
+    "type": "function",
+    "id": "gemiddelde",
+    "title": "Gemiddelde",
+    "descriptionFile": "gemiddelde/description.md",
+    "starterFile": "gemiddelde/starter.py",
+    "solutionFile": "gemiddelde/solution.py",
+    "hints": [
+      "Controleer eerst met `if` of de lijst leeg is."
+    ],
+    "tests": [
+      {
+        "name": "[7, 3, 9, 4]",
+        "code": "_nodaly_check(expression=\"gemiddelde([7, 3, 9, 4])\", expected=5.75)"
+      },
+      {
+        "name": "[1, 2]",
+        "code": "_nodaly_check(expression=\"gemiddelde([1, 2])\", expected=1.5)"
+      },
+      {
+        "name": "lege lijst",
+        "code": "assert submission.gemiddelde([]) == 0, 'Een lege lijst heeft gemiddelde 0.'"
+      },
+      {
+        "name": "kommagetallen",
+        "hidden": true,
+        "code": "_nodaly_check(expression=\"gemiddelde([0.1, 0.2])\", expected=0.15)"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "id": "priemgetallen",
+    "title": "Priemgetallen",
+    "description": "Een **priemgetal** is een geheel getal groter dan 1 dat alleen deelbaar is door 1 en door zichzelf.\n\nSchrijf drie functies:\n\n1. `is_priem(n)` geeft `True` als `n` een priemgetal is, anders `False`.\n2. `toon_priemgetallen(tot)` drukt alle priemgetallen kleiner dan `tot` af, op één regel, gescheiden door spaties.\n3. `aantal_priemgetallen(tot)` geeft terug hoeveel priemgetallen er kleiner zijn dan `tot`.\n\n```python\n>>> toon_priemgetallen(20)\n2 3 5 7 11 13 17 19\n```\n\n> [!IMPORTANT]\n> De laatste test telt de priemgetallen onder 100 000. Probeer delers alleen tot en met $\\sqrt{n}$:\n> heeft `n` een deler, dan is er ook een die niet groter is dan $\\sqrt{n}$.\n",
+    "starterCode": "def is_priem(n):\n    pass\n\n\ndef toon_priemgetallen(tot):\n    pass\n\n\ndef aantal_priemgetallen(tot):\n    pass\n",
+    "solution": "def is_priem(n):\n    if n < 2:\n        return False\n    deler = 2\n    while deler * deler <= n:\n        if n % deler == 0:\n            return False\n        deler += 1\n    return True\n\n\ndef toon_priemgetallen(tot):\n    print(*[n for n in range(tot) if is_priem(n)])\n\n\ndef aantal_priemgetallen(tot):\n    return sum(1 for n in range(tot) if is_priem(n))\n",
+    "testTimeLimitMs": 10000,
+    "hints": [
+      "Test in `is_priem` alle mogelijke delers vanaf 2 met `n % deler == 0`.",
+      "Gebruik `is_priem` in de twee andere functies."
+    ],
+    "tests": [
+      {
+        "name": "7 is priem",
+        "code": "assert is_priem(7), 'is_priem(7) moet True geven'"
+      },
+      {
+        "name": "1 en 9 zijn niet priem",
+        "code": "assert not is_priem(1) and not is_priem(9), '1 en 9 zijn geen priemgetallen'"
+      },
+      {
+        "name": "tot 20",
+        "code": "_nodaly_check(statement=\"toon_priemgetallen(20)\", stdout=\"2 3 5 7 11 13 17 19\\n\")"
+      },
+      {
+        "name": "tot 100 000",
+        "code": "_nodaly_check(expression=\"aantal_priemgetallen(100_000)\", expected=9592)"
+      }
+    ]
+  }
+]

@@ -3,11 +3,45 @@
   "id": "python-basis",
   "title": "Python basis (voorbeeld)",
   "language": "nl",
+  "description": "Een korte voorbeeldcursus die alles van het cursusformaat toont: theorie, functie- en invoer/uitvoer-oefeningen, meerkeuzevragen, puzzels met codeblokken en spel-levels.",
+  "attribution": {
+    "text": "Nodaly-voorbeeldcursus (CC0)",
+    "url": "https://github.com/nhofsted/nodaly-course-template"
+  },
   "license": "CC0 1.0",
-  "lessons": [
+  "chapters": [
     {
-      "id": "lussen",
-      "title": "Lussen"
+      "id": "basis",
+      "title": "De basis",
+      "descriptionFile": "chapters/basis.md",
+      "lessons": [
+        {
+          "id": "lussen",
+          "title": "Lussen"
+        },
+        {
+          "id": "functies",
+          "title": "Functies",
+          "path": "lessons/02-functies"
+        }
+      ]
+    },
+    {
+      "id": "avontuur",
+      "title": "Op avontuur",
+      "descriptionFile": "chapters/avontuur.md",
+      "lessons": [
+        {
+          "id": "spel",
+          "title": "Spel",
+          "unlocks": "backpack"
+        },
+        {
+          "id": "grotten",
+          "title": "Meer spel-levels",
+          "unlocks": "scarf"
+        }
+      ]
     }
   ]
 }

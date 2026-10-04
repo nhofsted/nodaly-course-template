@@ -1,0 +1,371 @@
+[
+  {
+    "type": "game",
+    "id": "kristallen-tellen",
+    "title": "Kristallen tellen",
+    "description": "Loop door de grot naar de uitgang en zeg met `say(...)` hoeveel kristallen er liggen. Raap ze niet op. Vleermuizen vliegen door de gang: staat er een voor je (`look(EAST) == \"bat\"`), wacht dan met `wait()`.\n\n★ Wacht niet langer dan nodig: lukt het met hoogstens 11 acties op elke kaart?",
+    "environment": "caves",
+    "starterCode": "aantal = 0\n",
+    "solution": "aantal = 0\nwhile look(EAST) != \"exit\":\n    while look(EAST) == \"bat\":\n        wait()\n    if look(EAST) == \"crystal\":\n        aantal = aantal + 1\n    move(EAST)\nsay(aantal)\nmove(EAST)\n",
+    "hints": [
+      "Kijk vóór elke stap wat er ligt: een kristal tel je, een vleermuis wacht je af."
+    ],
+    "api": [
+      "move",
+      "look",
+      "wait",
+      "say"
+    ],
+    "goals": [
+      {
+        "type": "count",
+        "what": "crystal"
+      },
+      {
+        "type": "reach",
+        "what": "exit"
+      }
+    ],
+    "bonus": [
+      {
+        "type": "maxActions",
+        "value": 11
+      }
+    ],
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "###########",
+          "####.######",
+          "#E3..5.2.X#",
+          "####.######",
+          "###########"
+        ],
+        "movers": [
+          {
+            "kind": "bat",
+            "at": [
+              4,
+              1
+            ],
+            "route": ".SS..NN."
+          }
+        ]
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "#############",
+          "###.####.####",
+          "#E.4.1..6.3X#",
+          "###.####.####",
+          "#############"
+        ],
+        "movers": [
+          {
+            "kind": "bat",
+            "at": [
+              3,
+              1
+            ],
+            "route": "SS.NN."
+          },
+          {
+            "kind": "bat",
+            "at": [
+              8,
+              3
+            ],
+            "route": "NN..SS.."
+          }
+        ]
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "#########",
+          "#####.###",
+          "#E7...9X#",
+          "#####.###",
+          "#########"
+        ],
+        "movers": [
+          {
+            "kind": "bat",
+            "at": [
+              5,
+              3
+            ],
+            "route": "NNSS"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "game",
+    "id": "de-tempeldeur",
+    "title": "De tempeldeur",
+    "description": "Een deur met een cijferslot verspert de weg. De code is een getal van 1 tot en met 50. Ga naast de deur staan en probeer een getal met `guess(getal)`: je hoort `\"higher\"` (hoger), `\"lower\"` (lager) of `\"correct\"`, en dan gaat de deur open.\n\n★ Gok slim: lukt het met hoogstens 11 acties op elke kaart (stappen en gokken samen)?",
+    "starterCode": "while can_move(EAST):\n    move(EAST)\n",
+    "solution": "while can_move(EAST):\n    move(EAST)\nlaag = 1\nhoog = 50\nantwoord = \"\"\nwhile antwoord != \"correct\":\n    gok = (laag + hoog) // 2\n    antwoord = guess(gok)\n    if antwoord == \"higher\":\n        laag = gok + 1\n    elif antwoord == \"lower\":\n        hoog = gok - 1\nwhile can_move(EAST):\n    move(EAST)\n",
+    "hints": [
+      "Hou bij tussen welke twee getallen de code nog kan liggen.",
+      "Gok telkens het midden: dan valt na elke gok de helft af."
+    ],
+    "api": [
+      "move",
+      "can_move",
+      "guess"
+    ],
+    "bonus": [
+      {
+        "type": "maxActions",
+        "value": 11
+      }
+    ],
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "########",
+          "#E...DX#",
+          "########"
+        ],
+        "code": 23
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "######",
+          "#E.DX#",
+          "######"
+        ],
+        "code": 50
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "#########",
+          "#E....DX#",
+          "#########"
+        ],
+        "code": 1
+      }
+    ]
+  },
+  {
+    "type": "game",
+    "id": "in-het-donker",
+    "title": "In het donker",
+    "description": "Het is donker in de grot: je ziet alleen de vakjes naast je ontdekker. Je ontdekker kan alleen vooruit (`forward()`) en linksom draaien (`turn_left()`). Volg de gang tot aan de uitgang.\n\nSchrijf eerst zelf een functie `turn_right()`.",
+    "environment": "caves",
+    "dark": true,
+    "starterCode": "def turn_right():\n    turn_left()\n\n",
+    "solution": "def turn_right():\n    turn_left()\n    turn_left()\n    turn_left()\n\n\nwhile look_forward() != \"exit\":\n    if can_move_forward():\n        forward()\n    else:\n        turn_left()\n        if not can_move_forward():\n            turn_right()\n            turn_right()\nforward()\n",
+    "hints": [
+      "Drie keer linksom is één keer rechtsom.",
+      "Kan je niet verder, probeer dan links; lukt dat ook niet, dan moet je naar rechts."
+    ],
+    "api": [
+      "forward",
+      "turn_left",
+      "can_move_forward",
+      "look_forward"
+    ],
+    "unlocks": "headlamp",
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "########",
+          "#>..####",
+          "###.####",
+          "###...X#",
+          "########"
+        ]
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "#########",
+          "#v###...#",
+          "#.###.#X#",
+          "#.....###",
+          "#########"
+        ]
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "#######",
+          "#X.####",
+          "##.####",
+          "##..<##",
+          "#######"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "game",
+    "id": "het-grootste-kristal",
+    "title": "Het grootste kristal",
+    "description": "In deze gang liggen kristallen van verschillende grootte. Raap **alleen het grootste** op. `measure()` geeft de grootte van het kristal waarop je ontdekker staat.",
+    "environment": "caves",
+    "starterCode": "",
+    "solution": "grootste = 0\nstappen = 0\nbeste = 0\nwhile can_move(EAST):\n    move(EAST)\n    stappen = stappen + 1\n    if measure() > grootste:\n        grootste = measure()\n        beste = stappen\nfor _ in range(stappen - beste):\n    move(WEST)\npick_up()\n",
+    "hints": [
+      "Loop eerst de hele gang door en onthoud hoeveel stappen ver het grootste kristal lag.",
+      "Loop dan terug naar die plaats en raap het op."
+    ],
+    "api": [
+      "move",
+      "can_move",
+      "measure",
+      "pick_up"
+    ],
+    "goals": [
+      {
+        "type": "largest",
+        "what": "crystal"
+      }
+    ],
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "#########",
+          "#E372941#",
+          "#########"
+        ]
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "########",
+          "#E28635#",
+          "########"
+        ]
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "######",
+          "#E914#",
+          "######"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "game",
+    "id": "beelden-sorteren",
+    "title": "Beelden sorteren",
+    "description": "Op een rij sokkels staan beelden van verschillende hoogte. Zet het **hoogste beeld achteraan**: loop over de rij en wissel (`swap(EAST)`) telkens als het beeld waarop je staat hoger is dan het volgende. Dat is één ronde van *bubble sort*.",
+    "starterCode": "move(EAST)\n",
+    "solution": "move(EAST)\nwhile look(EAST) == \"statue\":\n    if measure() > measure(EAST):\n        swap(EAST)\n    move(EAST)\n",
+    "hints": [
+      "`measure()` is de hoogte van het beeld onder je, `measure(EAST)` die van het volgende."
+    ],
+    "api": [
+      "move",
+      "look",
+      "measure",
+      "swap"
+    ],
+    "goals": [
+      {
+        "type": "sorted",
+        "what": "statue",
+        "last": 1
+      }
+    ],
+    "unlocks": "vest-explorer",
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "########",
+          "#E52814#",
+          "########"
+        ]
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "#######",
+          "#E3961#",
+          "#######"
+        ]
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "##########",
+          "#E4271365#",
+          "##########"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "game",
+    "id": "som-van-de-kristallen",
+    "title": "De som van de kristallen",
+    "description": "Je ontdekker hoeft niet te bewegen. `get_map()` geeft de kaart als een lijst van rijen (teksten); een cijfer is een kristal met die grootte. Zeg met `say(...)` hoe groot alle kristallen samen zijn.",
+    "environment": "caves",
+    "starterCode": "kaart = get_map()\n",
+    "solution": "totaal = 0\nfor rij in get_map():\n    for teken in rij:\n        if teken.isdigit():\n            totaal = totaal + int(teken)\nsay(totaal)\n",
+    "hints": [
+      "Gebruik twee lussen: één over de rijen, en daarin één over de tekens van een rij."
+    ],
+    "api": [
+      "get_map",
+      "say"
+    ],
+    "goals": [
+      {
+        "type": "answer"
+      }
+    ],
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "#######",
+          "#E.3..#",
+          "#.5.#2#",
+          "#######"
+        ],
+        "answer": 10
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "#####",
+          "#E9.#",
+          "#18.#",
+          "#####"
+        ],
+        "answer": 18
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "######",
+          "#E...#",
+          "######"
+        ],
+        "answer": 0
+      }
+    ]
+  }
+]
