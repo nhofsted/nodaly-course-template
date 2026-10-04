@@ -1,7 +1,9 @@
 # Nodaly-cursussjabloon
 
-Een kleine voorbeeldcursus in het [Nodaly](https://nodaly.be)-formaat om je eigen cursus mee te beginnen:
-één les met een theorie-item, een `function`-oefening en een `io`-oefening.
+Een kleine voorbeeldcursus in het [Nodaly](https://nodaly.be)-formaat om je eigen cursus mee te beginnen. Ze toont
+alles wat het formaat kan: theorie met afbeeldingen, wiskunde en kaders; `function`- en `io`-oefeningen met tips,
+verborgen tests, `setup` en een test op de code zelf; meerkeuzevragen; puzzels met codeblokken; en spel-levels met elke
+soort doel. Neem wat je nodig hebt en verwijder de rest.
 
 ## Gebruiken
 
@@ -14,11 +16,15 @@ Een kleine voorbeeldcursus in het [Nodaly](https://nodaly.be)-formaat om je eige
 ## Structuur
 
 ```
-course.json                      titel en lessen van de cursus
-lessons/lussen/exercises.json    de onderdelen van de les, in volgorde
-lessons/lussen/tellen/           opdracht, startcode en oplossing van één oefening
+course.json                         titel, hoofdstukken en lessen van de cursus
+chapters/                           de inleiding van elk hoofdstuk
+lessons/lussen/exercises.json       de onderdelen van een les, in volgorde
+lessons/lussen/tellen/              opdracht, startcode en oplossing van één oefening
+lessons/02-functies/                een les in een eigen map ("path" in course.json), met een afbeelding in media/
+lessons/spel/, lessons/grotten/     spel-levels
 ```
 
+Wat elk onderdeel toont, staat in de handleiding voor leerkrachten in Nodaly, onder *Handleiding → Voorbeelden*.
 Het volledige formaat (soorten oefeningen, tests, teksten, afbeeldingen) staat in de handleiding voor leerkrachten in
 Nodaly, onder *Handleiding → Het cursusformaat*.
 

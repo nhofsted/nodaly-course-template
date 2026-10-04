@@ -1,0 +1,54 @@
+[
+  {
+    "type": "game",
+    "id": "naar-de-uitgang",
+    "title": "Naar de uitgang",
+    "description": "Breng je ontdekker naar de uitgang en raap onderweg elk artefact op. De gang is niet op elke kaart even lang: `can_move(EAST)` vertelt of je verder kan, `look(EAST)` wat er op het volgende vakje ligt.\n\n★ Lukt het in 6 regels code?",
+    "starterCode": "move(EAST)\n",
+    "solution": "while can_move(EAST):\n    if look(EAST) == \"artefact\":\n        move(EAST)\n        pick_up()\n    else:\n        move(EAST)\n",
+    "hints": [
+      "Herhaal zolang je ontdekker naar het oosten kan.",
+      "Kijk voor elke stap wat er ligt: is het een artefact, raap het dan op nadat je erop stapt."
+    ],
+    "api": [
+      "move",
+      "can_move",
+      "look",
+      "pick_up"
+    ],
+    "bonus": [
+      {
+        "type": "maxLines",
+        "value": 6
+      }
+    ],
+    "unlocks": "hat-explorer",
+    "variants": [
+      {
+        "name": "Kaart 1",
+        "map": [
+          "#######",
+          "#E.a.X#",
+          "#######"
+        ]
+      },
+      {
+        "name": "Kaart 2",
+        "map": [
+          "##########",
+          "#Ea..a.aX#",
+          "##########"
+        ]
+      },
+      {
+        "name": "Kaart 3",
+        "hidden": true,
+        "map": [
+          "########",
+          "#Eaaa.X#",
+          "########"
+        ]
+      }
+    ]
+  }
+]
